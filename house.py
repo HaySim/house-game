@@ -17,6 +17,8 @@ def button_click(btn):
     global guess_word_with_spaces
     global tries
 
+    btn["state"] = "disabled"
+
     char = btn["text"]
 
     correct_guess = False
@@ -37,6 +39,10 @@ def button_click(btn):
     if not correct_guess:
         tries = tries + 1
         draw_house(tries)
+
+    if tries >= 7:
+        canvas.itemconfig(guess_word_id, text = "Try again!")
+    
 
 # Inserting letters A-Z:
 def place_buttons():
