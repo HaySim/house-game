@@ -1,10 +1,42 @@
 import tkinter as tk
 
-def callback():
-    print("Clicked")
+tries = 0
+the_word = ["A", "P", "P", "L", "E"]
+guess_word = ["_", "_", "_", "_", "_"]
 
+def add_spaces_guess_word(guess_word):
+
+    guess_word_with_spaces = ""
+    for index in range(len(guess_word)):
+        guess_word_with_spaces = guess_word_with_spaces + " " + guess_word[index]
+    return guess_word_with_spaces
+
+# Logic for when player makes a guess: 
 def button_click(btn):
-    print(btn["text"])
+    global guess_word
+    global guess_word_with_spaces
+    global tries
+
+    char = btn["text"]
+
+    correct_guess = False
+
+    for index in range(len(the_word)):
+
+        # If correct guess then reveal letter:
+        if char == the_word[index]:
+            guess_word = list(guess_word)
+            guess_word[index] = char 
+            correct_guess = True
+
+    guess_word = ''.join(guess_word)  
+
+    guess_word_with_spaces = add_spaces_guess_word(guess_word)
+    canvas.itemconfig(guess_word_id, text = guess_word_with_spaces)
+
+    if not correct_guess:
+        tries = tries + 1
+        draw_house(tries)
 
 # Inserting letters A-Z:
 def place_buttons():
@@ -59,6 +91,8 @@ def draw_house(life):
     elif life == 7:
         canvas.create_rectangle(442, 500, 542, 600, width = 3)
 
+guess_word_with_spaces = add_spaces_guess_word(guess_word)
+
 # Create a new window object and storing its reference in root variable:
 root = tk.Tk()
 root.title("House Game")
@@ -68,19 +102,10 @@ canvas = tk.Canvas(root, width = 1650, height = 950)
 canvas.pack()
 
 # Store id of text object:
-txt_id = canvas.create_text(1000,150, font = "Times 120", text = "_ _ _ _ _")
+guess_word_id = canvas.create_text(1000,150, font = "Times 120", text = guess_word_with_spaces)
 
 # Rename text value:
 #canvas.itemconfig(txt_id, text = "Hi") 
-
-
-draw_house(1)
-draw_house(2)
-draw_house(3)
-draw_house(4)
-draw_house(5)
-draw_house(6)
-draw_house(7)
 
 
 
