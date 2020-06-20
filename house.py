@@ -1,6 +1,7 @@
 import tkinter as tk
 
 tries = 0
+MAX_TRIES = 7
 # Changing the word
 #the_word = [""]
 the_word = list("HAYLEY")
@@ -45,6 +46,9 @@ def button_click(btn):
     if not correct_guess:
         tries = tries + 1
         draw_house(tries)
+
+        tries_msg = "Attempt " + str(tries) + " of " + str(MAX_TRIES)
+        canvas.itemconfig(tries_msg_id, text = tries_msg)
 
     if tries >= 7:
         canvas.create_text(1120, 450, font = "Times 100", text = "You Lose!")
@@ -119,7 +123,10 @@ canvas.pack()
 guess_word_id = canvas.create_text(1100,300, font = "Times 120", text = guess_word_with_spaces)
 
 my_text = "Guess a letter from A to Z"
-canvas.create_text(828,50, font = "Times 25", text = my_text)
+canvas.create_text(828, 50, font = "Times 25", text = my_text)
+
+tries_msg = "Attempt " + str(tries) + " of " + str(MAX_TRIES)
+tries_msg_id = canvas.create_text(827, 100, font = "Times 20", text = tries_msg)
 
 
 
