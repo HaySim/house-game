@@ -1,9 +1,9 @@
 import tkinter as tk
 
 tries = 0
-the_word = ["A", "P", "P", "L", "E"]
 # Changing the word
 #the_word = [""]
+the_word = list("HAYLEY")
 guess_word = list(the_word)
 
 # Change each character of guess_word to "_"
@@ -47,10 +47,10 @@ def button_click(btn):
         draw_house(tries)
 
     if tries >= 7:
-        canvas.itemconfig(guess_word_id, text = "Try again!")
+        canvas.create_text(1120, 450, font = "Times 100", text = "You Lose!")
 
     if guess_word == "".join(the_word):
-        canvas.itemconfig(guess_word_id, text = "You win!")
+        canvas.create_text(1100, 450, font = "Times 100", text = "You Win!")
 
 # Inserting letters A-Z:
 def place_buttons():
@@ -116,7 +116,10 @@ canvas = tk.Canvas(root, width = 1650, height = 950)
 canvas.pack()
 
 # Store id of text object:
-guess_word_id = canvas.create_text(1000,150, font = "Times 120", text = guess_word_with_spaces)
+guess_word_id = canvas.create_text(1100,300, font = "Times 120", text = guess_word_with_spaces)
+
+my_text = "Guess a letter from A to Z"
+canvas.create_text(828,50, font = "Times 25", text = my_text)
 
 
 
