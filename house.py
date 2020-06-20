@@ -2,7 +2,13 @@ import tkinter as tk
 
 tries = 0
 the_word = ["A", "P", "P", "L", "E"]
-guess_word = ["_", "_", "_", "_", "_"]
+# Changing the word
+#the_word = [""]
+guess_word = list(the_word)
+
+# Change each character of guess_word to "_"
+for index in range(len(guess_word)):
+    guess_word[index] = "_"
 
 def add_spaces_guess_word(guess_word):
 
@@ -42,7 +48,9 @@ def button_click(btn):
 
     if tries >= 7:
         canvas.itemconfig(guess_word_id, text = "Try again!")
-    
+
+    if guess_word == "".join(the_word):
+        canvas.itemconfig(guess_word_id, text = "You win!")
 
 # Inserting letters A-Z:
 def place_buttons():
@@ -109,9 +117,6 @@ canvas.pack()
 
 # Store id of text object:
 guess_word_id = canvas.create_text(1000,150, font = "Times 120", text = guess_word_with_spaces)
-
-# Rename text value:
-#canvas.itemconfig(txt_id, text = "Hi") 
 
 
 
