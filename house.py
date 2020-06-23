@@ -77,7 +77,7 @@ def button_click(btn):
         for b in AZ_btn_ids:
             b["state"] = "disabled"
 
-        you_win_txt_id = canvas.create_text(1100, 450, font = "Times 100", text = "YOU WIN!", fill = "green")
+        you_win_txt_id = canvas.create_text(1105, 450, font = "Times 100", text = "YOU WIN!", fill = "green")
 
         canvas_ids.append(you_win_txt_id)
 
@@ -138,31 +138,31 @@ def draw_house(life):
     some_id = 0
     # Draw large rectangle (main body of house): 
     if life == 1:
-        some_id = canvas.create_rectangle(155, 250, 580, 635, fill = "", width = 3)
+        some_id = canvas.create_rectangle(155, 250, 580, 635, fill = "grey", width = 3)
     # Draw triangle (for roof): 
     elif life == 2:
         points = [155, 250, 580, 250, 367, 100, 155, 250]
-        some_id = canvas.create_polygon(points, fill = "", outline = "black",  width = 3)
+        some_id = canvas.create_polygon(points, fill = "grey", outline = "black",  width = 3)
     # Draw rectangle (for door)
     elif life == 3:
-        some_id = canvas.create_rectangle(330, 470, 404, 635, fill = "", width = 3)
+        some_id = canvas.create_rectangle(330, 470, 404, 635, fill = "white", width = 3)
     # Draw rectangle (top left window):
     elif life == 4:
-        some_id = canvas.create_rectangle(193, 300, 293, 400, width = 3)
+        some_id = canvas.create_rectangle(193, 300, 293, 400, width = 3, fill = "white")
     # Draw rectangle (top right window):
     elif life == 5:
-        some_id = canvas.create_rectangle(442, 300, 542, 400, width = 3)
+        some_id = canvas.create_rectangle(442, 300, 542, 400, width = 3, fill = "white")
     # Draw rectangle (bottom left window):
     elif life == 6:
-        some_id = canvas.create_rectangle(193, 500, 293, 600, width = 3)
+        some_id = canvas.create_rectangle(193, 500, 293, 600, width = 3, fill = "white")
     # Draw rectangle (bottom right window):
     elif life == 7:
         for b in AZ_btn_ids:
             b["state"] = "disabled"
 
-        some_id = canvas.create_rectangle(442, 500, 542, 600, width = 3)
+        some_id = canvas.create_rectangle(442, 500, 542, 600, width = 3, fill = "white")
         btn = tk.Button(master = root, text = "NEW WORD" , font = "Times 100",\
-                       foreground = "red" , width = 13, height = 1, command = try_again)
+                       foreground = "red", width = 13, height = 1, command = try_again)
         btn.place(x = 790 , y = 450)
 
         try_again_id = btn
