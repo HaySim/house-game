@@ -1,7 +1,7 @@
 import tkinter as tk
 import random
 
-words = ["CHIMNEY", "KITCHEN", "WARDROBE", "BATHROOM", "BEDROOM", "GARDEN"]
+words = ["CHIMNEY", "KITCHEN", "WARDROBE", "BATHROOM", "BEDROOM", "GARDEN", "SHOWER", "ALLOTMENT"]
 
 tries = 0
 MAX_TRIES = 7
@@ -74,13 +74,16 @@ def button_click(btn):
         canvas.itemconfig(tries_msg_id, text = tries_msg)
 
     if guess_word == "".join(the_word):
+        for b in AZ_btn_ids:
+            b["state"] = "disabled"
+
         you_win_txt_id = canvas.create_text(1100, 450, font = "Times 100", text = "YOU WIN!", fill = "green")
 
         canvas_ids.append(you_win_txt_id)
 
-        btn = tk.Button(master = root, text = "New word" , font = "Times 100",\
-                       foreground = "red" , width = 9, height = 1, command = try_again)
-        btn.place(x = 880 , y = 530)
+        btn = tk.Button(master = root, text = "NEW WORD" , font = "Times 100",\
+                       foreground = "red" , width = 13, height = 1, command = try_again)
+        btn.place(x = 790 , y = 530)
 
         try_again_id = btn
 
@@ -154,10 +157,13 @@ def draw_house(life):
         some_id = canvas.create_rectangle(193, 500, 293, 600, width = 3)
     # Draw rectangle (bottom right window):
     elif life == 7:
+        for b in AZ_btn_ids:
+            b["state"] = "disabled"
+
         some_id = canvas.create_rectangle(442, 500, 542, 600, width = 3)
-        btn = tk.Button(master = root, text = "New word" , font = "Times 100",\
-                       foreground = "red" , width = 9, height = 1, command = try_again)
-        btn.place(x = 880 , y = 450)
+        btn = tk.Button(master = root, text = "NEW WORD" , font = "Times 100",\
+                       foreground = "red" , width = 13, height = 1, command = try_again)
+        btn.place(x = 790 , y = 450)
 
         try_again_id = btn
 
@@ -179,7 +185,7 @@ canvas.pack()
 # Store id of text object:
 guess_word_id = canvas.create_text(1100,300, font = "Times 120", text = guess_word_with_spaces)
 
-my_text = "Guess a letter from A to Z"
+my_text = "CLICK a letter from A to Z"
 canvas.create_text(828, 50, font = "Times 25", text = my_text)
 
 tries_msg = "Attempt " + str(tries) + " of " + str(MAX_TRIES)
